@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                    http://www.springframework.org/schema/security 
+                    http://www.springframework.org/schema/security/spring-security-3.0.xsd
+                    http://www.springframework.org/schema/jee 
+                    http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+	<beans:bean id="authenticatedVoter"
+		class="org.springframework.security.access.vote.AuthenticatedVoter" />
+
+	<beans:bean id="roleVoter"
+		class="org.springframework.security.access.vote.RoleVoter">
+		<beans:property name="rolePrefix" value="" />
+	</beans:bean>
+
+	<beans:bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<beans:property name="decisionVoters">
+			<beans:list>
+				<beans:ref bean="roleVoter" />
+				<beans:ref bean="authenticatedVoter" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<http auto-config="true" access-decision-manager-ref="accessDecisionManager">
+		<intercept-url pattern="/**" filters="none" />
+	</http>
+
+	<jee:jndi-lookup id="dataSource" jndi-name="kiprevDS"
+		resource-ref="true" expected-type="javax.sql.DataSource" />
+
+	<beans:bean id="kiprevAuthenticationManager"
+		class="br.com.kiman.kiprev.ki.xp.jaxws.security.KiprevAuthenticationManager" />
+
+	<beans:bean id="kiprevAuthenticationManagerJdbcDaoImpl"
+		class="br.com.kiman.kiprev.ki.xp.jaxws.security.KiprevAuthenticationManagerJdbcDaoImpl">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+
+	<beans:bean id="kiprevAuthenticationPasswordEncoder"
+		class="br.com.kiman.kiprev.ki.xp.jaxws.security.KiprevAuthenticationPasswordEncoder" />
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="kiprevAuthenticationManagerJdbcDaoImpl">
+			<password-encoder ref="kiprevAuthenticationPasswordEncoder" />
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

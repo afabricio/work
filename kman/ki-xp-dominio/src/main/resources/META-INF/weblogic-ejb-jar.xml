@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weblogic-ejb-jar
+	xmlns:wls="http://www.bea.com/ns/weblogic/weblogic-ejb-jar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+          http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd 
+          http://www.bea.com/ns/weblogic/weblogic-ejb-jar 
+          http://www.bea.com/ns/weblogic/weblogic-ejb-jar/1.0/weblogic-ejb-jar.xsd">
+
+	<weblogic-enterprise-bean>
+		<ejb-name>AssinaturaFacade</ejb-name>
+		<stateless-session-descriptor>
+			<business-interface-jndi-name-map>
+				<business-remote>br.com.kiman.kiprev.ki.xp.dominio.facade.AssinaturaFacade</business-remote>
+				<jndi-name>ejb/AssinaturaFacade</jndi-name>
+			</business-interface-jndi-name-map>
+		</stateless-session-descriptor>
+	</weblogic-enterprise-bean>
+
+	<weblogic-enterprise-bean>
+		<ejb-name>SecurityFacade</ejb-name>
+		<stateless-session-descriptor>
+			<business-interface-jndi-name-map>
+				<business-remote>br.com.kiman.kiprev.ki.xp.dominio.facade.SecurityFacade</business-remote>
+				<jndi-name>ejb/SecurityFacade</jndi-name>
+			</business-interface-jndi-name-map>
+		</stateless-session-descriptor>
+	</weblogic-enterprise-bean>
+
+	<weblogic-enterprise-bean>
+		<ejb-name>DocumentoRelatorioFacade</ejb-name>
+		<stateless-session-descriptor>
+			<business-interface-jndi-name-map>
+				<business-remote>br.com.kiman.kiprev.ki.xp.dominio.facade.DocumentoRelatorioFacade</business-remote>
+				<jndi-name>ejb/DocumentoRelatorioFacade</jndi-name>
+			</business-interface-jndi-name-map>
+		</stateless-session-descriptor>
+	</weblogic-enterprise-bean>
+
+
+</weblogic-ejb-jar>
+
+
+      

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd   http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context-2.5.xsd    http://www.springframework.org/schema/aop    http://www.springframework.org/schema/aop/spring-aop-2.5.xsd   http://www.springframework.org/schema/tx   http://www.springframework.org/schema/tx/spring-tx.xsd   http://cxf.apache.org/jaxws    http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<import
+		resource="classpath:META-INF/cxf/cxf-extension-jaxws.xml" />
+
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
+
+
+	<context:component-scan annotation-config="true"
+		base-package="br.com.kiman.kiprev.ki.xp.jaxws" />
+
+	<!-- <bean -->
+	<!-- class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager" -->
+	<!-- id="persistenceUnitManager"> -->
+	<!-- <property name="persistenceXmlLocations"> -->
+	<!-- <list> -->
+	<!-- <value>/WEB-INF/lib/persistence.xml</value> -->
+	<!-- </list> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+
+	<!-- <bean -->
+	<!-- class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" -->
+	<!-- id="entityManagerFactory"> -->
+	<!-- <property name="persistenceUnitManager" ref="persistenceUnitManager" 
+		/> -->
+	<!-- <property name="jpaProperties"> -->
+	<!-- <props> -->
+	<!-- <prop key="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</prop> -->
+	<!-- <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop> -->
+	<!-- <prop key="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.WeblogicTransactionManagerLookup -->
+	<!-- </prop> -->
+	<!-- </props> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+
+	<!-- <bean class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" -->
+	<!-- id="cacheManager"> -->
+	<!-- <property name="configLocation"> -->
+	<!-- <value>classpath:/META-INF/ehcache.xml</value> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<!-- <bean -->
+	<!-- class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" 
+		/> -->
+
+
+	<!-- <tx:jta-transaction-manager /> -->
+
+
+	<!-- Descomentar para ativar o serviço de exemplo. <bean id="helloBean" -->
+	<!-- class="br.com.kiman.kiprev.ki.core.service.impl.HelloServiceImpl" /> -->
+	<!-- <jaxws:endpoint -->
+	<!-- id="helloService" implementor="#helloBean" address="/HelloService" 
+		/> -->
+
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+
+	<!-- <aop:aspectj-autoproxy /> -->
+
+
+
+	<bean class="br.com.kiman.kiprev.ki.xp.jaxws.AssinaturaWS"
+		id="assinaturaServiceBean" />
+
+	<jaxws:endpoint address="/Assinatura"
+		id="assinaturaService" implementor="#assinaturaServiceBean" />
+
+	<bean
+		class="br.com.kiman.kiprev.ki.xp.jaxws.documento.DocumentoWSImpl"
+		id="documentoServiceBean" />
+	<jaxws:endpoint address="/Documento"
+		id="documentoService" implementor="#documentoServiceBean" />
+
+</beans>

@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project
+	xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd'
+	xmlns='http://maven.apache.org/POM/4.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>ki-xp-ear</artifactId>
+	<packaging>ear</packaging>
+
+	<parent>
+		<groupId>br.com.kiman.kiprev.ki.xp</groupId>
+		<artifactId>ki-xp</artifactId>
+		<version>4.0.31.6B-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>br.com.kiman.kiprev.ki.xp</groupId>
+			<artifactId>ki-xp-jaxrs</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.kiman.kiprev.ki.xp</groupId>
+			<artifactId>ki-xp-jaxws</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.kiman.kiprev.ki.xp</groupId>
+			<artifactId>ki-xp-login</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.kiman.kiprev.ki.xp</groupId>
+			<artifactId>ki-xp-dominio</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>apache-log4j-extras</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.el</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.10.1</version>
+				<configuration>
+					<modules>
+						<webModule>
+							<groupId>br.com.kiman.kiprev.ki.xp</groupId>
+							<artifactId>ki-xp-jaxrs</artifactId>
+							<contextRoot>/ki-rs</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>br.com.kiman.kiprev.ki.xp</groupId>
+							<artifactId>ki-xp-jaxws</artifactId>
+							<contextRoot>/ki-ws</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>br.com.kiman.kiprev.ki.xp</groupId>
+							<artifactId>ki-xp-login</artifactId>
+							<contextRoot>/ki-xp-login</contextRoot>
+						</webModule>
+
+						<ejbModule>
+							<groupId>br.com.kiman.kiprev.ki.xp</groupId>
+							<artifactId>ki-xp-dominio</artifactId>
+						</ejbModule>
+					</modules>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
